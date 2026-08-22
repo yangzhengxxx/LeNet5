@@ -1,34 +1,13 @@
-###  System Environment
-- **OS**: Windows 10 / 11 x64  
-- **Python**: 3.8.20  
-- **GPU**: NVIDIA (CUDA 11.3, cuDNN 8)  
-- **Framework**: PyTorch 1.10.1  
+# LeNet-5 FashionMNIST 分类
 
----
+基于 PyTorch 实现的 LeNet-5，用于 FashionMNIST 十分类。项目提供模型训练、测试、样本展示和数据加载性能测试脚本。
 
-###  Main Dependencies
+## 使用方法
 
-| Module         | Version |
-| -------------- | ------- |
-| `torch`        | 1.10.1  |
-| `torchvision`  | 0.11.2  |
-| `torchaudio`   | 0.10.1  |
-| `numpy`        | 1.24.4  |
-| `pandas`       | 1.2.5   |
-| `matplotlib`   | 3.7.2   |
-| `scikit-learn` | 1.3.2   |
-| `torchsummary` | 1.5.1   |
-
----
-
-###  Installation
-
-####  Conda Environment (Recommended)
 ```bash
-# Create new environment
-conda create -n pytorch python=3.8
-conda activate pytorch
+pip install torch torchvision matplotlib pandas torchsummary
+python model_train.py
+python model_test.py
+```
 
-# Install core dependencies
-conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
-pip install numpy pandas matplotlib scikit-learn torchsummary
+首次运行会自动下载数据集；训练权重保存为 `best_model.pth`，训练曲线保存在 `result_figures/`。运行环境建议 Python 3.8+、PyTorch 1.10+。

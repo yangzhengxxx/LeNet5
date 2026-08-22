@@ -21,7 +21,7 @@ def train_val_data_process():
             transforms.Resize(size=28),
             transforms.ToTensor()
         ]),
-        download=False
+        download=True
     )
 
     train_data, val_data = Data.random_split(
@@ -85,7 +85,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
             optimizer.step()
 
             train_loss += loss.item() * b_x.size(0)
-            train_corrects += torch.sum(pre_lab == b_y.data)
+            train_corrects += torch.sum(pre_lab == b_y)
             train_num += b_x.size(0)
 
         train_loss_all.append(train_loss / train_num)
@@ -101,7 +101,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
             loss = criterion(output, b_y)
 
             val_loss += loss.item() * b_x.size(0)
-            val_corrects += torch.sum(pre_lab == b_y.data)
+            val_corrects += torch.sum(pre_lab == b_y)
             val_num += b_x.size(0)
 
         val_loss_all.append(val_loss / val_num)
@@ -117,7 +117,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
         time_use = time.time() - since
         print("Time taken: {:.0f}m {:.0f}s".format(time_use // 60, time_use % 60))
 
-    torch.save(best_model_wts, "The path of best_model.pth you want to save ")
+    torch.save(best_model_wts, "best_model.pth")
 
     train_process = pd.DataFrame(
         data={

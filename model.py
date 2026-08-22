@@ -24,5 +24,5 @@ class LeNet(nn.Module):
         x = self.flatten(x)
         x = self.sig(self.f5(x))
         x = self.sig(self.f6(x))
-        x = self.sig(self.f7(x))
+        x = self.f7(x)
         return x
